@@ -1,17 +1,17 @@
-{% extends 'base.html' %}
-
-{% block isi %}
+{% extends 'base.html' %} {% block isi %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <form action="" method="POST">
-                {{ form.as_p }}
-                <button class="btn btn-primary">Tambah Buku</button>
-            </form>
-        </div>
+  <div class="row">
+    <div class="col-md-4">
+      {% if pesan %}
+      <div class="alert alert-success">{{ pesan }}</div>
+      {% endif %}
+      <form action="/tambah-buku/" method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button class="btn btn-primary">Tambah Buku</button>
+      </form>
     </div>
+  </div>
 </div>
-
 
 {% endblock %}
