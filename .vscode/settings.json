@@ -3,5 +3,6 @@
   "python.pythonPath": "Env/bin/python",
   "activityBar.background": "#13332E",
   "titleBar.activeBackground": "#19423B",
-  "titleBar.activeForeground": "#F6FBFB"
+  "titleBar.activeForeground": "#F6FBFB",
+  "editor.defaultFormatter": "HookyQR.beautify"
 }

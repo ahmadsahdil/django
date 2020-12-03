@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block isi %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      {% for message in messages %} {% if message %}
+      <div class="alert alert-success">{{ message }}</div>
+      {% endif %} {% endfor %}
+      <!-- bisa seperti ini <form action="/buku/ubah/{{ buku.id }}" method="post"> -->
+      <h3>Ubah Buku</h3>
+      <form action="{% url 'ubah_buku' buku.id %}" method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <a href="/buku" class="btn btn-danger">Kembali</a>
+        <button class="btn btn-primary">Ubah Buku</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

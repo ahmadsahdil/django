@@ -3,6 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <a href="{% url 'tambah-buku' %}">Tambah Buku</a>
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -16,7 +17,9 @@
         <tbody>
           {% for buku in books %}
           <tr>
-            <td>{{ buku.judul }}</td>
+            <td>
+              <a href="{% url 'ubah_buku' buku.id %}">{{ buku.judul }}</a>
+            </td>
             <td>{{ buku.penulis }}</td>
             <td>{{ buku.penerbit }}</td>
             <td>{{ buku.jumlah }}</td>
