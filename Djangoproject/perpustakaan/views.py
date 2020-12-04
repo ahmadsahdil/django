@@ -3,22 +3,32 @@ from perpustakaan.models import Buku
 from perpustakaan.forms import formBuku
 from django.contrib import messages
 
+
+def hapusBuku(request, id_buku):
+    buku1 = Buku.objects.filter(id=id_buku)
+    buku1.delete()
+    messages.success(request, "Data berhasil Dihapus")
+
+    return redirect('buku')
+
+
 def ubahBuku(request, id_buku):
     buku = Buku.objects.get(id=id_buku)
     template = 'ubah-buku.html'
     if request.POST:
         form = formBuku(request.POST, instance=buku)
         if form.is_valid:
-            messages.success(request,"Data berhasil Diedit")
+            messages.success(request, "Data berhasil Diedit")
             form.save()
-            return redirect('ubah_buku',id_buku = id_buku)
+            return redirect('ubah_buku', id_buku=id_buku)
     else:
         form = formBuku(instance=buku)
         konteks = {
-            'form':form,
-            'buku':buku,
+            'form': form,
+            'buku': buku,
         }
-        return render(request,template,konteks)
+        return render(request, template, konteks)
+
 
 def buku(request):
     # menampilkan beberapa data 'where di sql' pisahkan dengan "__"
@@ -44,6 +54,7 @@ def tambahBuku(request):
                 'pesan': pesan,
             }
             return render(request, 'tambah-buku.html', konteks)
+            # return redirect('buku')
 
     else:
 
