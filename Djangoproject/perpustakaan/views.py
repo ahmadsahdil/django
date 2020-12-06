@@ -3,6 +3,17 @@ from perpustakaan.models import Buku
 from perpustakaan.forms import formBuku
 from django.contrib import messages
 
+def buku(request):
+    # menampilkan beberapa data 'where di sql' pisahkan dengan "__"
+    # limit data yang ditampilakan gunakan "[:3]" di akhir
+    # books = Buku.objects.filter(kelompok_id_id__nama='ahmad')[:3]
+    # Menampilkan semua data
+    books = Buku.objects.all()
+    konteks = {
+        'books': books,
+    }
+    return render(request, 'buku.html', konteks)
+
 
 def hapusBuku(request, id_buku):
     buku1 = Buku.objects.filter(id=id_buku)
@@ -30,16 +41,6 @@ def ubahBuku(request, id_buku):
         return render(request, template, konteks)
 
 
-def buku(request):
-    # menampilkan beberapa data 'where di sql' pisahkan dengan "__"
-    # limit data yang ditampilakan gunakan "[:3]" di akhir
-    # books = Buku.objects.filter(kelompok_id_id__nama='ahmad')[:3]
-    # Menampilkan semua data
-    books = Buku.objects.all()
-    konteks = {
-        'books': books,
-    }
-    return render(request, 'buku.html', konteks)
 
 
 def tambahBuku(request):
